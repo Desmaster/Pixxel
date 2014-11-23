@@ -26,6 +26,7 @@ public class Game implements Runnable {
 
     public void init() {
         window = new Window("Adversary", width, height, scale);
+        Keyboard.getInstance().register(window);
     }
 
     public void run() {
@@ -36,7 +37,7 @@ public class Game implements Runnable {
         window.requestFocus();
         while (running) {
             now = System.nanoTime();
-            int delta = (int) (now - lastTime) / 1000;
+            int delta = (int) (now - lastTime);
             unprocessed += (now - lastTime) / nsPerTick;
             lastTime = now;
 

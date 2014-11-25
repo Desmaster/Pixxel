@@ -24,7 +24,7 @@ public class Screen {
     }
 
     public void render(int xp, int yp, Sprite sprite) {
-        for (int y = 0; y < sprite.heiight; y++) {
+        for (int y = 0; y < sprite.height; y++) {
             int ya = yp + y;
             for (int x = 0; x < sprite.width; x++) {
                 int xa = xp + x;

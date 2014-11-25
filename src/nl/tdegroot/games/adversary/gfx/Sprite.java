@@ -9,19 +9,25 @@ import java.io.IOException;
 public class Sprite {
 
     public int width;
-    public int heiight;
+    public int height;
     public int[] pixels;
 
     public Sprite(String ref) {
         try {
             BufferedImage image = ImageIO.read(Game.class.getResourceAsStream(ref));
             width = image.getWidth();
-            heiight = image.getHeight();
-            pixels = new int[width * heiight];
-            image.getRGB(0, 0, width, heiight, pixels, 0, width);
+            height = image.getHeight();
+            pixels = new int[width * height];
+            image.getRGB(0, 0, width, height, pixels, 0, width);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static SpriteSheet getSheet() {
+        SpriteSheet sheet = null;
+
+        return sheet;
     }
 
 }

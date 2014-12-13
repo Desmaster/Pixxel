@@ -1,7 +1,6 @@
 package nl.tdegroot.games.adversary;
 
 import nl.tdegroot.games.adversary.gfx.Screen;
-import nl.tdegroot.games.adversary.gfx.Sprite;
 import nl.tdegroot.games.adversary.gfx.SpriteSheet;
 import nl.tdegroot.games.adversary.gfx.Window;
 
@@ -74,7 +73,7 @@ public class Game implements Runnable {
     private void render() {
         Screen screen = window.getScreen();
         screen.clear();
-        screen.render(10, 10, sheet.sprites[0]);
+        screen.render(10, 10, sheet.sprites[1]);
         window.draw();
     }
 

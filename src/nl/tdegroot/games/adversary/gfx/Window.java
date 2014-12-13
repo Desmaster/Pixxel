@@ -1,5 +1,7 @@
 package nl.tdegroot.games.adversary.gfx;
 
+import nl.tdegroot.games.adversary.gfx.Screen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -62,7 +64,7 @@ public class Window extends Canvas {
 
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        g.setColor(Color.black);
+        g.setColor(java.awt.Color.black);
 
         g.dispose();
         bs.show();

@@ -1,4 +1,4 @@
-package nl.tdegroot.games.adversary.util;
+package nl.tdegroot.games.pixxel.util;
 
 import java.io.File;
 import java.io.FileInputStream;

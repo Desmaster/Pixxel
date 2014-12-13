@@ -1,4 +1,4 @@
-package nl.tdegroot.games.adversary.gfx;
+package nl.tdegroot.games.pixxel.gfx;
 
 public class SpriteSheet {
 

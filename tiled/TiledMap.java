@@ -1,4 +1,4 @@
-package nl.tdegroot.games.adversary.tiled;
+package nl.tdegroot.games.pixxel.tiled;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -9,11 +9,11 @@ import java.util.Properties;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import nl.tdegroot.games.adversary.GameException;
-import nl.tdegroot.games.adversary.gfx.Screen;
-import nl.tdegroot.games.adversary.gfx.Sprite;
-import nl.tdegroot.games.adversary.util.Log;
-import nl.tdegroot.games.adversary.util.ResourceLoader;
+import nl.tdegroot.games.pixxel.GameException;
+import nl.tdegroot.games.pixxel.gfx.Screen;
+import nl.tdegroot.games.pixxel.gfx.Sprite;
+import nl.tdegroot.games.pixxel.util.Log;
+import nl.tdegroot.games.pixxel.util.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -100,7 +100,7 @@ public class TiledMap {
      * Create a new tile map based on a given TMX file
      *
      * @param ref The location of the tile map to load
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to load the tilemap
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to load the tilemap
      */
     public TiledMap(String ref) throws GameException {
         this(ref, true);
@@ -111,7 +111,7 @@ public class TiledMap {
      *
      * @param ref          The location of the tile map to load
      * @param loadTileSets True if we want to load tilesets - including their image data
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to load the tilemap
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to load the tilemap
      */
     public TiledMap(String ref, boolean loadTileSets) throws GameException {
         this.loadTileSets = loadTileSets;
@@ -125,7 +125,7 @@ public class TiledMap {
      * @param ref              The location of the tile map to load
      * @param tileSetsLocation The location where we can find the tileset images and other
      *                         resources
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to load the tilemap
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to load the tilemap
      */
     public TiledMap(String ref, String tileSetsLocation) throws GameException {
         load(ResourceLoader.getResourceAsStream(ref), tileSetsLocation);
@@ -135,7 +135,7 @@ public class TiledMap {
      * Load a tile map from an arbitary input stream
      *
      * @param in The input stream to load from
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to load the tilemap
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to load the tilemap
      */
     public TiledMap(InputStream in) throws GameException {
         load(in, "");
@@ -146,7 +146,7 @@ public class TiledMap {
      *
      * @param in               The input stream to load from
      * @param tileSetsLocation The location at which we can find tileset images
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to load the tilemap
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to load the tilemap
      */
     public TiledMap(InputStream in, String tileSetsLocation) throws GameException {
         load(in, tileSetsLocation);
@@ -556,7 +556,7 @@ public class TiledMap {
      *
      * @param in               The input stream from which to load the map
      * @param tileSetsLocation The location from which we can retrieve tileset images
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to parse the map or find a tileset
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to parse the map or find a tileset
      */
     private void load(InputStream in, String tileSetsLocation) throws GameException {
         tilesLocation = tileSetsLocation;
@@ -939,7 +939,7 @@ public class TiledMap {
          * Create a new group based on the XML definition
          *
          * @param element The XML element describing the layer
-         * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to parse the XML group
+         * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to parse the XML group
          */
         public ObjectGroup(Element element) throws GameException {
             name = element.getAttribute("name");
@@ -1021,7 +1021,7 @@ public class TiledMap {
          * Create a new group based on the XML definition
          *
          * @param element The XML element describing the layer
-         * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to parse the XML group
+         * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to parse the XML group
          */
         public GroupObject(Element element) throws GameException {
             name = element.getAttribute("name");

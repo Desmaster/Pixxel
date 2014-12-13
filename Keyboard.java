@@ -1,6 +1,6 @@
-package nl.tdegroot.games.adversary;
+package nl.tdegroot.games.pixxel;
 
-import nl.tdegroot.games.adversary.gfx.Window;
+import nl.tdegroot.games.pixxel.gfx.Window;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

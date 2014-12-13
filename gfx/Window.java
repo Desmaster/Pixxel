@@ -1,6 +1,4 @@
-package nl.tdegroot.games.adversary.gfx;
-
-import nl.tdegroot.games.adversary.gfx.Screen;
+package nl.tdegroot.games.pixxel.gfx;
 
 import javax.swing.*;
 import java.awt.*;

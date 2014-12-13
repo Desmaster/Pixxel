@@ -1,13 +1,13 @@
-package nl.tdegroot.games.adversary.tiled;
+package nl.tdegroot.games.pixxel.tiled;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
-import nl.tdegroot.games.adversary.GameException;
-import nl.tdegroot.games.adversary.gfx.Screen;
-import nl.tdegroot.games.adversary.util.Log;
+import nl.tdegroot.games.pixxel.GameException;
+import nl.tdegroot.games.pixxel.gfx.Screen;
+import nl.tdegroot.games.pixxel.util.Log;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -70,7 +70,7 @@ public class Layer {
      *
      * @param element The XML element describing the layer
      * @param map     The map this layer is part of
-     * @throws nl.tdegroot.games.adversary.GameException Indicates a failure to parse the XML layer
+     * @throws nl.tdegroot.games.pixxel.GameException Indicates a failure to parse the XML layer
      */
     public Layer(TiledMap map, Element element) throws GameException {
         this.map = map;

@@ -1,4 +1,4 @@
-package nl.tdegroot.games.adversary;
+package nl.tdegroot.games.pixxel;
 
 public class GameException extends Exception {
 

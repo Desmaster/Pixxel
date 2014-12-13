@@ -1,4 +1,4 @@
-package nl.tdegroot.games.adversary.tiled;
+package nl.tdegroot.games.pixxel.tiled;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -7,12 +7,12 @@ import java.util.Properties;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import nl.tdegroot.games.adversary.GameException;
-import nl.tdegroot.games.adversary.gfx.Color;
-import nl.tdegroot.games.adversary.gfx.Sprite;
-import nl.tdegroot.games.adversary.gfx.SpriteSheet;
-import nl.tdegroot.games.adversary.util.Log;
-import nl.tdegroot.games.adversary.util.ResourceLoader;
+import nl.tdegroot.games.pixxel.GameException;
+import nl.tdegroot.games.pixxel.gfx.Color;
+import nl.tdegroot.games.pixxel.gfx.Sprite;
+import nl.tdegroot.games.pixxel.gfx.SpriteSheet;
+import nl.tdegroot.games.pixxel.util.Log;
+import nl.tdegroot.games.pixxel.util.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -56,7 +56,7 @@ public class TileSet {
      *            The map this tileset was loaded from (gives context to paths)
      * @param loadImage
      *            True if we should load the image (useful in headless mode)
-     * @throws nl.tdegroot.games.adversary.GameException
+     * @throws nl.tdegroot.games.pixxel.GameException
      *             Indicates a failure to parse the tileset
      */
     public TileSet(TiledMap map, Element element, boolean loadImage)

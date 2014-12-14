@@ -1,6 +1,6 @@
 package nl.tdegroot.games.pixxel.gfx;
 
-import nl.tdegroot.games.adversary.Game;
+import nl.tdegroot.games.adversary.Adversary;
 import nl.tdegroot.games.pixxel.util.Log;
 
 import javax.imageio.ImageIO;
@@ -16,7 +16,7 @@ public class Sprite {
     public Sprite(String ref) {
         try {
             Log.info("Trying to load: " + ref + "...", false);
-            BufferedImage image = ImageIO.read(Game.class.getResourceAsStream(ref)); // TODO: Update to new ResourceLoader
+            BufferedImage image = ImageIO.read(Adversary.class.getResourceAsStream(ref)); // TODO: Update to new ResourceLoader
             System.out.println(" succeeded!");
             width = image.getWidth();
             height = image.getHeight();

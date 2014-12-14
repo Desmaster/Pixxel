@@ -16,7 +16,7 @@ public class Window extends Canvas {
 
     private BufferedImage image;
     private JFrame frame;
-    private Screen screen;
+    public Screen screen;
 
     public Window(String title, int width, int height, int scale) {
         this.title = title;
@@ -66,10 +66,6 @@ public class Window extends Canvas {
 
         g.dispose();
         bs.show();
-    }
-
-    public Screen getScreen() {
-        return screen;
     }
 
 }

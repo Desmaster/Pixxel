@@ -1,10 +1,12 @@
 package nl.tdegroot.games.pixxel.gfx;
 
+import nl.tdegroot.games.pixxel.util.Log;
+
 public class SpriteSheet {
 
     public Sprite[] sprites;
-    public int tilesAcross;
-    public int tilesDown;
+    public int sritesAcross;
+    public int spritesDown;
 
     public SpriteSheet(String ref, int spriteWidth, int spriteHeight) {
         load(new Sprite(ref), spriteWidth, spriteHeight);
@@ -19,8 +21,8 @@ public class SpriteSheet {
         sprites = new Sprite[amount];
         int[] pixels = new int[spriteWidth * spriteHeight];
         int current = 0;
-        tilesAcross = sheet.width / spriteWidth;
-        tilesDown = sheet.height / spriteHeight;
+        sritesAcross = sheet.width / spriteWidth;
+        spritesDown = sheet.height / spriteHeight;
         for (int yp = 0; yp < sheet.height / spriteHeight; yp++) {
             for (int xp = 0; xp < sheet.width / spriteWidth; xp++) {
                 for (int y = 0; y < spriteHeight; y++) {
@@ -37,7 +39,7 @@ public class SpriteSheet {
     }
 
     public void render(int x, int y, int sheetX, int sheetY, Screen screen) {
-        Sprite sprite = sprites[sheetX + sheetY * tilesAcross];
+        Sprite sprite = sprites[sheetX + sheetY * sritesAcross];
         screen.render(x, y, sprite);
     }
 }

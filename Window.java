@@ -1,4 +1,6 @@
-package nl.tdegroot.games.pixxel.gfx;
+package nl.tdegroot.games.pixxel;
+
+import nl.tdegroot.games.pixxel.gfx.Screen;
 
 import javax.swing.*;
 import java.awt.*;

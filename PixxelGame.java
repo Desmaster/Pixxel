@@ -1,7 +1,6 @@
 package nl.tdegroot.games.pixxel;
 
 import nl.tdegroot.games.pixxel.gfx.Screen;
-import nl.tdegroot.games.pixxel.gfx.Window;
 
 public abstract class PixxelGame implements Runnable{
 

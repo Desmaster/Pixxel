@@ -1,7 +1,5 @@
 package nl.tdegroot.games.pixxel;
 
-import nl.tdegroot.games.pixxel.gfx.Window;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

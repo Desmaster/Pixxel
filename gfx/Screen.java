@@ -4,7 +4,7 @@ public class Screen {
 
     private int width;
     private int height;
-    protected int[] pixels;
+    public int[] pixels;
 
     public Screen(int width, int height) {
         this.width = width;

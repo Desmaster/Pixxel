@@ -83,15 +83,22 @@ public abstract class PixxelGame implements Runnable{
         window.draw();
     }
 
-    public void start() {
+    public synchronized void start() {
+        if (running) return;
         window.create();
         running = true;
         thread = new Thread(this, "Game");
         thread.start();
     }
 
-    public void stop() {
-
+    public synchronized void stop() {
+        if (!running) return;
+        running = false;
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

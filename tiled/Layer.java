@@ -13,6 +13,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class Layer {
+
+    public static final int FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
+    public static final int FLIPPED_VERTICALLY_FLAG   = 0x40000000;
+    public static final int FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
+
     /**
      * The code used to decode Base64 encoding
      */
@@ -207,8 +212,10 @@ public class Layer {
 //                        set.tiles.startUse();
                     }
 
-                    int tileid = getTileRealID(data[sx + tx][sy + ty][1]);    // TODO add methoud.
-                    int rotation = getTileRotation(data[sx + tx][sy + ty][1]);//
+                    int tileid = getTileRealID(data[sx + tx][sy + ty][2]);    // TODO add methoud.
+                    int rotation = getTileRotation(data[sx + tx][sy + ty][2]);//
+
+//                    Log.info("Tile Rotation: " + rotation);
 
 
                     int sheetX = set.getTileX(data[sx + tx][sy + ty][1]); // TODO Tile ID !!!!!!!!!
@@ -218,7 +225,7 @@ public class Layer {
 
                     // set.tiles.renderInUse(x+(tx*set.tileWidth),
                     // y+(ty*set.tileHeight), sheetX, sheetY);
-                    set.tiles.render(x + (tx * mapTileWidth), y + (ty * mapTileHeight) - tileOffsetY, sheetX, sheetY, screen);
+                    set.tiles.render(x + (tx * mapTileWidth), y + (ty * mapTileHeight) - tileOffsetY, sheetX, sheetY, rotation, screen);
                 }
             }
 
@@ -236,18 +243,18 @@ public class Layer {
         }
     }
 
-    private int getTileRotation(int i) {
-        int HORIZONTAL_FLAG = 0x80000000;
-        int VERTICAL_FLAG = 0x40000000;
-        int DIAGONAL_FLAG = 0x20000000;
+    private int getTileRotation(int id) {
+        boolean flippedHorizontally = ((id & FLIPPED_HORIZONTALLY_FLAG) != 0);
+        boolean flippedVertically = ((id & FLIPPED_VERTICALLY_FLAG) != 0);
+        boolean flippedDiagonally = ((id & FLIPPED_DIAGONALLY_FLAG) != 0);
 
-        boolean HORIZONTAL_FLIP = ((i & HORIZONTAL_FLAG) == HORIZONTAL_FLAG);
-        boolean VERTICAL_FLIP = ((i & VERTICAL_FLAG) == VERTICAL_FLAG);
-        boolean DIAGONAL_FLIP = ((i & DIAGONAL_FLAG) == DIAGONAL_FLAG);
+        int rotation = 0;
 
-        System.out.println("Hor:" + HORIZONTAL_FLIP + "ver:" + VERTICAL_FLIP + "dia:" + DIAGONAL_FLIP);
+        if (flippedHorizontally && flippedDiagonally) rotation = 90;
+        if (flippedHorizontally && flippedVertically) rotation = 180;
+        if (flippedVertically && flippedDiagonally) rotation = 270;
 
-        return 0;
+        return rotation;
     }
 
     private int getTileRealID(int i) {

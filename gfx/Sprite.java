@@ -1,6 +1,5 @@
 package nl.tdegroot.games.pixxel.gfx;
 
-import nl.tdegroot.games.adversary.Adversary;
 import nl.tdegroot.games.pixxel.util.Log;
 import nl.tdegroot.games.pixxel.util.ResourceLoader;
 
@@ -18,8 +17,10 @@ public class Sprite {
     private int[][] rotation;
     private int currentRotation = 0;
 
+    Color transparency = new Color(0xFFFF00FF);
+
     public Sprite(String ref) {
-        this(ref, false, null);
+        this(ref, false, new Color(0xFFFF00FF));
     }
 
     public Sprite(int[] pixels, int width, int height) {
@@ -33,10 +34,10 @@ public class Sprite {
         sourcePixels = pixels.clone();
     }
 
-    public Sprite(String ref, boolean b, Color trans) {
+    public Sprite(String ref, boolean b, Color transparency) {
         try {
             Log.info("Trying to load: " + ref + "...", false);
-            BufferedImage image = ImageIO.read(ResourceLoader.getResourceAsStream(ref)); // TODO: Update to new ResourceLoader
+            BufferedImage image = ImageIO.read(ResourceLoader.getResourceAsStream(ref));
             System.out.println(" succeeded!");
             width = image.getWidth();
             height = image.getHeight();
@@ -44,8 +45,10 @@ public class Sprite {
             rotation = new int[4][];
             image.getRGB(0, 0, width, height, pixels, 0, width);
             sourcePixels = pixels.clone();
+            this.transparency = transparency;
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println(" failed");
         } catch (Exception e) {
             System.err.println(" failed");
         }

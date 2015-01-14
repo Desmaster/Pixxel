@@ -37,13 +37,8 @@ public class Screen {
                 int xa = xp + x;
                 int xs = x;
 
-//                if (rotation == 90) xs = sprite.height - y - 1;
-//                if (rotation == 180) ys = sprite.height - 1 - ys; // Vertical Flip
-//                if (rotation == 180) xs = sprite.width - 1 - xs; // Horizontal Flip
-//                if (rotation == 270) ys = sprite.width - x - 1;
-
                 int col = sprite.pixels[xs + ys * sprite.width];
-                if (col == 0xFFFF00FF) continue;
+                if (col == sprite.transparency.hex) continue;
                 pixels[xa + ya * width] = col;
             }
         }

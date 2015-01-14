@@ -37,7 +37,7 @@ public class SpriteSheet {
     }
 
     public void render(int x, int y, int sheetX, int sheetY, Screen screen) {
-        render(x, y, sheetX, sheetY, 0 ,screen);
+        render(x, y, sheetX, sheetY, 0, screen);
     }
 
     public void render(int x, int y, int sheetX, int sheetY, int rotation, Screen screen) {

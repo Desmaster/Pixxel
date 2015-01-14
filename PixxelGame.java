@@ -22,7 +22,11 @@ public abstract class PixxelGame implements Runnable{
         this.height = height;
         this.scale = scale;
         preInit();
-        init();
+        try {
+            init();
+        } catch (GameException e) {
+            e.printStackTrace();
+        }
     }
 
     private void preInit() {
@@ -30,7 +34,7 @@ public abstract class PixxelGame implements Runnable{
         Keyboard.getInstance().register(window);
     }
 
-    public abstract void init();
+    public abstract void init() throws GameException;
 
     public void run() {
         double nsPerTick = 1000000000.0D / 60;

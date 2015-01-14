@@ -1,4 +1,4 @@
-package nl.tdegroot.games.pixxel.tiled;
+package nl.tdegroot.games.pixxel.map.tiled;
 
 import java.io.InputStream;
 import java.util.HashMap;

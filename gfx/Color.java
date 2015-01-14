@@ -44,6 +44,7 @@ public class Color {
             a = 255;
         }
 
+        this.hex = hex;
         this.r = r / 255.0f;
         this.g = g / 255.0f;
         this.b = b / 255.0f;

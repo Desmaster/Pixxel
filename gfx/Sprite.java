@@ -23,17 +23,6 @@ public class Sprite {
         this(ref, false, new Color(0xFFFF00FF));
     }
 
-    public Sprite(int[] pixels, int width, int height) {
-        this.width = width;
-        this.height = height;
-        this.pixels = new int[pixels.length];
-        rotation = new int[4][];
-        for (int i = 0; i < pixels.length; i++) {
-            this.pixels[i] = pixels[i];
-        }
-        sourcePixels = pixels.clone();
-    }
-
     public Sprite(String ref, boolean b, Color transparency) {
         try {
             Log.info("Trying to load: " + ref + "...", false);
@@ -52,6 +41,28 @@ public class Sprite {
         } catch (Exception e) {
             System.err.println(" failed");
         }
+    }
+
+    public Sprite(int[] pixels, int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.pixels = new int[pixels.length];
+        rotation = new int[4][];
+        for (int i = 0; i < pixels.length; i++) {
+            this.pixels[i] = pixels[i];
+        }
+        sourcePixels = pixels.clone();
+    }
+
+    public Sprite(int col, int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.pixels = new int[width * height];
+        rotation = new int[4][];
+        for (int i = 0; i < pixels.length; i++) {
+            this.pixels[i] = col;
+        }
+        sourcePixels = pixels.clone();
     }
 
     public void rotate(int angle) {

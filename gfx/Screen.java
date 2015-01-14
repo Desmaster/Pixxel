@@ -23,6 +23,10 @@ public class Screen {
         }
     }
 
+    public void render(int xp, int yp, Sprite sprite) {
+        render(xp, yp, sprite, 0);
+    }
+
     public void render(int xp, int yp, Sprite sprite, int rotation) {
         render(xp, yp, sprite, rotation, false);
     }
@@ -36,6 +40,8 @@ public class Screen {
             for (int x = 0; x < sprite.width; x++) {
                 int xa = xp + x;
                 int xs = x;
+
+                if (xa >= width || ya >= height || ya < 0) continue;
 
                 int col = sprite.pixels[xs + ys * sprite.width];
                 if (col == sprite.transparency.hex) continue;

@@ -8,7 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-public class Window extends Canvas {
+public class Display extends Canvas {
 
     public String title;
     public int width;
@@ -20,7 +20,7 @@ public class Window extends Canvas {
     private JFrame frame;
     public Screen screen;
 
-    public Window(String title, int width, int height, int scale) {
+    public Display(String title, int width, int height, int scale) {
         this.title = title;
         this.width = width;
         this.height = height;

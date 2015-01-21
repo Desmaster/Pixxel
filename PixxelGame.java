@@ -13,7 +13,7 @@ public abstract class PixxelGame implements Runnable{
     public int frames;
     public int ticks;
 
-    protected Window window;
+    protected Display display;
     private Thread thread;
 
     public PixxelGame(String title, int width, int height, int scale) {
@@ -30,8 +30,8 @@ public abstract class PixxelGame implements Runnable{
     }
 
     private void preInit() {
-        window = new Window(title, width, height, scale);
-        Keyboard.getInstance().register(window);
+        display = new Display(title, width, height, scale);
+        Keyboard.getInstance().register(display);
     }
 
     public abstract void init() throws GameException;
@@ -41,7 +41,7 @@ public abstract class PixxelGame implements Runnable{
         double unprocessed = 0;
         long lastTime = System.nanoTime(), now;
         long lastTimer1 = System.currentTimeMillis();
-        window.requestFocus();
+        display.requestFocus();
         while (running) {
             now = System.nanoTime();
             int delta = (int) (now - lastTime);
@@ -77,19 +77,19 @@ public abstract class PixxelGame implements Runnable{
     public abstract void tick(int delta);
 
     private void preRender() {
-        Screen screen = window.screen;
+        Screen screen = display.screen;
         screen.clear();
     }
 
     public abstract void render();
 
     private void postRender() {
-        window.draw();
+        display.draw();
     }
 
     public synchronized void start() {
         if (running) return;
-        window.create();
+        display.create();
         running = true;
         thread = new Thread(this, "Game");
         thread.start();

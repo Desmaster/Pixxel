@@ -113,8 +113,8 @@ public class Keyboard implements KeyListener {
         return instance;
     }
 
-    public void register(Window window) {
-        window.addKeyListener(this);
+    public void register(Display display) {
+        display.addKeyListener(this);
     }
 
     public static boolean isKeyDown(int keyCode) {

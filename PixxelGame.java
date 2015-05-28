@@ -2,7 +2,7 @@ package nl.tdegroot.games.pixxel;
 
 import nl.tdegroot.games.pixxel.gfx.Screen;
 
-public abstract class PixxelGame implements Runnable{
+public abstract class PixxelGame implements Runnable {
 
     protected String title;
     protected int width;
@@ -15,6 +15,8 @@ public abstract class PixxelGame implements Runnable{
 
     protected Display display;
     private Thread thread;
+
+    private boolean logFps = false;
 
     public PixxelGame(String title, int width, int height, int scale) {
         this.title = title;
@@ -66,7 +68,8 @@ public abstract class PixxelGame implements Runnable{
 
             if (System.currentTimeMillis() - lastTimer1 > 1000) {
                 lastTimer1 += 1000;
-                System.out.println(ticks + " ticks, " + frames + " fps");
+                if (logFps)
+                    System.out.println(ticks + " ticks, " + frames + " fps");
                 frames = 0;
                 ticks = 0;
             }
@@ -105,4 +108,7 @@ public abstract class PixxelGame implements Runnable{
         }
     }
 
+    public void setLogFps(boolean logFps) {
+        this.logFps = logFps;
+    }
 }

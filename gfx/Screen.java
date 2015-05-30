@@ -5,6 +5,7 @@ public class Screen {
     private int width;
     private int height;
     public int[] pixels;
+    Color color = Color.WHITE;
 
     public Screen(int width, int height) {
         this.width = width;
@@ -20,6 +21,107 @@ public class Screen {
     public void clear(int col) {
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = col;
+        }
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void drawPoint(int x, int y) {
+        pixels[x + y * width] = color.hex;
+    }
+
+    public void drawLine(int x1, int y1, int x2, int y2) {
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+
+        int sx = (x1 < x2) ? 1 : -1;
+        int sy = (y1 < y2) ? 1 : -1;
+
+        int err = dx - dy;
+
+        while (true) {
+            drawPoint(x1, y1);
+
+            if (x1 == x2 && y1 == y2) {
+                break;
+            }
+
+            int e2 = err * 2;
+
+            if (e2 > -dy) {
+                err -= dy;
+                x1 += sx;
+            }
+
+            if (e2 < dx) {
+                err += dx;
+                y1 += sy;
+            }
+        }
+    }
+
+    public void drawRect(int x, int y, int w, int h) {
+        drawLine(x, y, x+w, y);
+        drawLine(x+w, y, x+w, y+h);
+        drawLine(x, y+h, x+w, y+h);
+        drawLine(x, y, x, y+h);
+    }
+
+    public void fillRect(int x, int y, int w, int h) {
+        for (int xx = x; xx < x + w; xx++) {
+            for (int yy = y; yy < y + h; yy++) {
+                pixels[xx + yy * width] = color.hex;
+            }
+        }
+    }
+
+    /*
+    Source: http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
+     */
+    public void drawCircle(int x0, int y0, int r) {
+        int x = r;
+        int y = 0;
+        int decisionOver2 = 1 - x;
+
+        while(x >= y)
+        {
+            drawPoint( x + x0,  y + y0);
+            drawPoint( y + x0,  x + y0);
+            drawPoint(-x + x0,  y + y0);
+            drawPoint(-y + x0,  x + y0);
+            drawPoint(-x + x0, -y + y0);
+            drawPoint(-y + x0, -x + y0);
+            drawPoint( x + x0, -y + y0);
+            drawPoint( y + x0, -x + y0);
+            y++;
+            if (decisionOver2<=0)
+            {
+                decisionOver2 += 2 * y + 1;   // Change in decision criterion for y -> y+1
+            }
+            else
+            {
+                x--;
+                decisionOver2 += 2 * (y - x) + 1;   // Change for y -> y+1, x -> x-1
+            }
+        }
+    }
+
+    public void fillCircle(int x, int y, int r) {
+        for (int yy = -r; yy < r; yy++) {
+            for (int xx = -r; xx < r; xx++) {
+                if (xx*xx+yy*yy <= (r*2 + r*2) * 0.8f)
+                    pixels[(x + xx) + (y + yy) * width] = color.hex;
+            }
         }
     }
 

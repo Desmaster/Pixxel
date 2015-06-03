@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Sprite {
 
+    private String fileName;
     public int width;
     public int height;
     public int[] pixels;
@@ -17,15 +18,19 @@ public class Sprite {
     private int[][] rotation;
     private int currentRotation = 0;
 
-    Color transparency = new Color(0xFFFF00FF);
+    public Sprite() {
 
-    public Sprite(String ref) {
-        this(ref, false, new Color(0xFFFF00FF));
     }
 
-    public Sprite(String ref, boolean b, Color transparency) {
+    public Sprite(String ref) {
+        this(ref, false);
+    }
+
+    public Sprite(String ref, boolean b) {
         try {
             Log.info("Trying to load: " + ref + "...", false);
+            int index = ref.lastIndexOf("/");
+            String fileName = ref.substring(index + 1);
             BufferedImage image = ImageIO.read(ResourceLoader.getResourceAsStream(ref));
             System.out.println(" succeeded!");
             width = image.getWidth();
@@ -34,7 +39,8 @@ public class Sprite {
             rotation = new int[4][];
             image.getRGB(0, 0, width, height, pixels, 0, width);
             sourcePixels = pixels.clone();
-            this.transparency = transparency;
+
+            this.fileName = fileName;
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println(" failed");
@@ -111,4 +117,11 @@ public class Sprite {
         return intArray;
     }
 
+    public int[] getPixels() {
+        return pixels;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
 }

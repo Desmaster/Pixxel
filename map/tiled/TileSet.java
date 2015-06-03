@@ -116,7 +116,7 @@ public class TileSet {
         }
 
         if (loadImage) {
-            Sprite sprite = new Sprite(map.getTilesLocation() + "/" + ref, false, trans);
+            Sprite sprite = new Sprite(map.getTilesLocation() + "/" + ref, false);
             setTileSetImage(sprite);
         }
 

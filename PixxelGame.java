@@ -63,7 +63,7 @@ public abstract class PixxelGame implements Runnable {
 
             if (shouldRender) {
                 preRender();
-                render();
+                render(display.screen);
                 postRender();
                 frames++;
             }
@@ -86,7 +86,7 @@ public abstract class PixxelGame implements Runnable {
         screen.clear();
     }
 
-    public abstract void render();
+    public abstract void render(Screen screen);
 
     private void postRender() {
         display.draw();

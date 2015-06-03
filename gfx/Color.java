@@ -1,6 +1,11 @@
 package nl.tdegroot.games.pixxel.gfx;
 
 public class Color {
+    public static final Color WHITE =   new Color(0xFFFFFFFF);
+    public static final Color BLACK =   new Color(0xFF000000);
+    public static final Color RED =     new Color(0xFFFF0000);
+    public static final Color GREEN =   new Color(0xFF00FF00);
+    public static final Color BLUE =    new Color(0xFF0000FF);
 
     public int hex = 0;
 

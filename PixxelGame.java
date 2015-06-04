@@ -12,6 +12,7 @@ public abstract class PixxelGame implements Runnable {
     protected boolean running = false;
     public int frames;
     public int ticks;
+    protected int time;
 
     protected Display display;
     private Thread thread;
@@ -54,6 +55,7 @@ public abstract class PixxelGame implements Runnable {
 
             while (unprocessed >= 1) {
                 ticks++;
+                time++;
                 tick(delta);
                 unprocessed--;
                 shouldRender = true;

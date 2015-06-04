@@ -146,7 +146,7 @@ public class Screen {
                 if (xa >= width || ya >= height || ya < 0) continue;
 
                 int col = sprite.pixels[xs + ys * sprite.width];
-                if (col == sprite.transparency.hex) continue;
+                if (col == 0xFFFF00FF) continue;
                 pixels[xa + ya * width] = col;
             }
         }

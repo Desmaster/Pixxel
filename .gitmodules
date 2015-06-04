@@ -1,0 +1,4 @@
+[submodule "Pixxel"]
+	path = Pixxel
+	url = https://github.com/Desmaster/Pixxel.git
+	branch = master

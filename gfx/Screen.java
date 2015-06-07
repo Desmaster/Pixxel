@@ -162,8 +162,6 @@ public class Screen {
                 int xa = xp + x;
                 int xs = x;
 
-                if (xa >= width || ya >= height || ya < 0) continue;
-
                 int col = sprite.pixels[xs + ys * sprite.width];
                 if (col == 0xFFFF00FF) continue;
                 if (col != color.hex) color.hex = col;

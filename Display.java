@@ -25,6 +25,8 @@ public class Display extends Canvas {
         this.width = width;
         this.height = height;
         this.scale = scale;
+
+        screen = new Screen(width / scale, height / scale);
     }
 
     private void init() {
@@ -35,7 +37,6 @@ public class Display extends Canvas {
 
         image = new BufferedImage(width / scale, height / scale, BufferedImage.TYPE_INT_ARGB);
         pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
-        screen = new Screen(width / scale, height / scale);
     }
 
     public void create() {
@@ -70,4 +71,7 @@ public class Display extends Canvas {
         bs.show();
     }
 
+    public void setTitle(String title) {
+        frame.setTitle(title);
+    }
 }

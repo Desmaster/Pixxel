@@ -7,11 +7,37 @@ public class Screen {
     public int[] pixels;
     Color color = Color.WHITE;
 
+    int translateX = 0, translateY = 0;
+
+    int[][] matrix;
+
+
     public Screen(int width, int height) {
         this.width = width;
         this.height = height;
         pixels = new int[width * height];
+
+        matrix = new int[][] {{0, 0}, {width, height}};
+
         clear();
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    //TODO: Create actual Matrix class?
+    public void setProjectionMatrix(int[][] matrix) {
+        this.matrix = matrix;
+    }
+
+    public void translate(int x, int y) {
+        translateX = x;
+        translateY = y;
     }
 
     public void clear() {
@@ -24,20 +50,13 @@ public class Screen {
         }
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
     public void setColor(Color color) {
         this.color = color;
     }
 
     public void drawPoint(int x, int y) {
-        pixels[x + y * width] = color.hex;
+        if (x > matrix[0][0] && x < matrix[0][0] + matrix[1][0] && y > matrix[0][1] && y < matrix[0][1] + matrix[1][1])
+            pixels[(x - translateX) + (y - translateY) * width] = color.hex;
     }
 
     public void drawLine(int x1, int y1, int x2, int y2) {
@@ -80,7 +99,7 @@ public class Screen {
     public void fillRect(int x, int y, int w, int h) {
         for (int xx = x; xx < x + w; xx++) {
             for (int yy = y; yy < y + h; yy++) {
-                pixels[xx + yy * width] = color.hex;
+                drawPoint(xx, yy);
             }
         }
     }
@@ -152,5 +171,4 @@ public class Screen {
         }
 
     }
-
 }

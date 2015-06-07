@@ -139,7 +139,7 @@ public class Screen {
         for (int yy = -r; yy < r; yy++) {
             for (int xx = -r; xx < r; xx++) {
                 if (xx*xx+yy*yy <= (r*2 + r*2) * 0.8f)
-                    pixels[(x + xx) + (y + yy) * width] = color.hex;
+                    drawPoint(x + xx, y + yy);
             }
         }
     }
@@ -166,7 +166,8 @@ public class Screen {
 
                 int col = sprite.pixels[xs + ys * sprite.width];
                 if (col == 0xFFFF00FF) continue;
-                pixels[xa + ya * width] = col;
+                if (col != color.hex) setColor(new Color(col));
+                drawPoint(xa, ya);
             }
         }
 

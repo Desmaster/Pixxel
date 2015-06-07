@@ -166,7 +166,7 @@ public class Screen {
 
                 int col = sprite.pixels[xs + ys * sprite.width];
                 if (col == 0xFFFF00FF) continue;
-                if (col != color.hex) setColor(new Color(col));
+                if (col != color.hex) color.hex = col;
                 drawPoint(xa, ya);
             }
         }

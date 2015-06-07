@@ -91,7 +91,7 @@ public class Screen {
 
     public void drawRect(int x, int y, int w, int h) {
         drawLine(x, y, x+w, y);
-        drawLine(x+w, y, x+w, y+h);
+        drawLine(x+w, y, x + w, y + h);
         drawLine(x, y+h, x+w, y+h);
         drawLine(x, y, x, y+h);
     }

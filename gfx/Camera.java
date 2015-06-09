@@ -39,7 +39,7 @@ public class Camera {
         return height;
     }
 
-    public int[][] getProjectionMatrix() {
-        return new int[][] {{x, y}, {width, height}};
+    public int[] getProjectionMatrix() {
+        return new int[] {x, y, width, height};
     }
 }

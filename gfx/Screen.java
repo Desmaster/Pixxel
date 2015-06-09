@@ -9,7 +9,7 @@ public class Screen {
 
     int translateX = 0, translateY = 0;
 
-    int[][] matrix;
+    int[] matrix;
 
 
     public Screen(int width, int height) {
@@ -17,21 +17,12 @@ public class Screen {
         this.height = height;
         pixels = new int[width * height];
 
-        matrix = new int[][] {{0, 0}, {width, height}};
+        matrix = new int[] {0, 0, width, height};
 
         clear();
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    //TODO: Create actual Matrix class?
-    public void setProjectionMatrix(int[][] matrix) {
+    public void setProjectionMatrix(int[] matrix) {
         this.matrix = matrix;
     }
 
@@ -55,7 +46,7 @@ public class Screen {
     }
 
     public void drawPoint(int x, int y) {
-        if (x > matrix[0][0] && x < matrix[0][0] + matrix[1][0] && y > matrix[0][1] && y < matrix[0][1] + matrix[1][1])
+        if (x > matrix[0] && x < matrix[0] + matrix[2] && y > matrix[1] && y < matrix[1] + matrix[3])
             pixels[(x - translateX) + (y - translateY) * width] = color.hex;
     }
 
@@ -169,5 +160,13 @@ public class Screen {
             }
         }
 
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

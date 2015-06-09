@@ -10,15 +10,15 @@ import java.awt.image.DataBufferInt;
 
 public class Display extends Canvas {
 
-    public String title;
-    public int width;
-    public int height;
-    public int scale;
+    private String title;
+    private int width;
+    private int height;
+    private int scale;
     private int[] pixels;
 
     private BufferedImage image;
     private JFrame frame;
-    public Screen screen;
+    private Screen screen;
 
     public Display(String title, int width, int height, int scale) {
         this.title = title;
@@ -71,7 +71,27 @@ public class Display extends Canvas {
         bs.show();
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setTitle(String title) {
         frame.setTitle(title);
+    }
+
+    public int getScaledWidth() {
+        return width/scale;
+    }
+
+    public int getScaledHeight() {
+        return height/scale;
+    }
+
+    public int getScale() {
+        return scale;
+    }
+
+    public Screen getScreen() {
+        return screen;
     }
 }

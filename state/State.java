@@ -6,6 +6,7 @@ import nl.tdegroot.games.pixxel.PixxelGame;
 import nl.tdegroot.games.pixxel.gfx.Screen;
 
 public abstract class State {
+
     protected PixxelGame game;
 
     public State(PixxelGame game) {
@@ -14,7 +15,7 @@ public abstract class State {
 
     public abstract void init(Display display) throws GameException;
 
-    public abstract void tick(Display display, int delta);
+    public abstract void tick();
 
-    public abstract void render(Display display, Screen screen);
+    public abstract void render(Screen screen);
 }

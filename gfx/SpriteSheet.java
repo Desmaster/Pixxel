@@ -2,11 +2,16 @@ package nl.tdegroot.games.pixxel.gfx;
 
 public class SpriteSheet {
 
-    public Sprite[] sprites;
-    public int spritesAcross;
-    public int spritesDown;
+    private Sprite[] sprites;
+    private int spritesAcross;
+    private int spritesDown;
+
+    private int spriteWidth, spriteHeight;
 
     public SpriteSheet(String ref, int spriteWidth, int spriteHeight) {
+        this.spriteWidth = spriteWidth;
+        this.spriteHeight = spriteHeight;
+
         load(new Sprite(ref), spriteWidth, spriteHeight);
     }
 
@@ -43,5 +48,25 @@ public class SpriteSheet {
     public void render(int x, int y, int sheetX, int sheetY, int rotation, Screen screen) {
         Sprite sprite = sprites[sheetX + sheetY * spritesAcross];
         screen.render(x, y, sprite, rotation);
+    }
+
+    public Sprite[] getSprites() {
+        return sprites;
+    }
+
+    public int getSpritesAcross() {
+        return spritesAcross;
+    }
+
+    public int getSpritesDown() {
+        return spritesDown;
+    }
+
+    public int getSpriteWidth() {
+        return spriteWidth;
+    }
+
+    public int getSpriteHeight() {
+        return spriteHeight;
     }
 }

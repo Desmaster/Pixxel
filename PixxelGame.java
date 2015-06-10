@@ -1,11 +1,8 @@
 package nl.tdegroot.games.pixxel;
 
 import nl.tdegroot.games.pixxel.gfx.Screen;
-import nl.tdegroot.games.pixxel.state.State;
 
 public abstract class PixxelGame implements Runnable {
-
-    private State currentState;
 
     private boolean running = false;
     private int frames;
@@ -21,6 +18,8 @@ public abstract class PixxelGame implements Runnable {
         display = new Display(title, width, height, scale);
         Keyboard.getInstance().register(display);
     }
+
+    public abstract void init(Display display) throws GameException;
 
     public void run() {
         double nsPerTick = 1000000000.0D / 60;
@@ -39,14 +38,14 @@ public abstract class PixxelGame implements Runnable {
             while (unprocessed >= 1) {
                 ticks++;
                 time++;
-                currentState.tick(display, delta);
+                tick();
                 unprocessed--;
                 shouldRender = true;
             }
 
             if (shouldRender) {
                 preRender();
-                currentState.render(display, display.getScreen());
+                render(display.getScreen());
                 postRender();
                 frames++;
             }
@@ -67,13 +66,17 @@ public abstract class PixxelGame implements Runnable {
         screen.clear();
     }
 
+    public abstract void tick();
+
+    public abstract void render(Screen screen);
+
     private void postRender() {
         display.draw();
     }
 
     public synchronized void start() {
         try {
-            currentState.init(display);
+            init(display);
         } catch (GameException e) {
             e.printStackTrace();
         }
@@ -93,12 +96,6 @@ public abstract class PixxelGame implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public State getCurrentState() { return currentState; }
-
-    public void setCurrentState(State state) {
-        currentState = state;
     }
 
     public void setLogFps(boolean logFps) {

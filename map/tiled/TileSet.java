@@ -189,8 +189,10 @@ public class TileSet {
     public void setTileSetImage(Sprite sprite) {
         tiles = new SpriteSheet(sprite, tileWidth, tileHeight, tileSpacing,
                 tileMargin);
-        tilesAcross = tiles.spritesAcross;
-        tilesDown = tiles.spritesAcross;
+        tilesAcross = tiles.getSpritesAcross();
+
+        //TODO: Timon is this right?
+        tilesDown = tiles.getSpritesAcross();
 
         if (tilesAcross <= 0) {
             tilesAcross = 1;

@@ -6,6 +6,7 @@ public class Screen {
     private int height;
     public int[] pixels;
     Color color = Color.WHITE;
+    Font font;
 
     int translateX = 0, translateY = 0;
 
@@ -44,6 +45,12 @@ public class Screen {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) { this.font = font; }
 
     public void drawPoint(int x, int y) {
         if (x > matrix[0] && x < matrix[0] + matrix[2] && y > matrix[1] && y < matrix[1] + matrix[3])
@@ -133,6 +140,10 @@ public class Screen {
                     drawPoint(x + xx, y + yy);
             }
         }
+    }
+
+    public void drawString(int x, int y, String string) {
+        font.render(x, y, string, this);
     }
 
     public void render(int xp, int yp, Sprite sprite) {

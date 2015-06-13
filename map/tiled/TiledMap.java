@@ -224,7 +224,7 @@ public class TiledMap {
             int sheetX = tileSet.getTileX(layer.data[x][y][1]);
             int sheetY = tileSet.getTileY(layer.data[x][y][1]);
 
-            return tileSet.tiles.sprites[sheetX + sheetY * tileSet.tilesAcross];
+            return tileSet.tiles.getSprites()[sheetX + sheetY * tileSet.tilesAcross];
         }
 
         return null;

@@ -6,6 +6,7 @@ public class Screen {
     private int height;
     public int[] pixels;
     Color color = Color.WHITE;
+
     Font font;
 
     int translateX = 0, translateY = 0;
@@ -180,4 +181,5 @@ public class Screen {
     public int getHeight() {
         return height;
     }
+
 }

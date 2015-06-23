@@ -1,22 +1,30 @@
 package nl.tdegroot.games.pixxel.gfx;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Screen {
 
     private int width;
     private int height;
-    public int[] pixels;
-    Color color = Color.WHITE;
 
-    Font font;
+    Collection<Object[]> strings;
+    public int[] pixels;
+
+    Color color = Color.WHITE;
+    private Font font;
 
     int translateX = 0, translateY = 0;
-
     int[] matrix;
 
+    private Graphics graphics;
 
     public Screen(int width, int height) {
         this.width = width;
         this.height = height;
+
+        strings = new ArrayList<>();
         pixels = new int[width * height];
 
         matrix = new int[] {0, 0, width, height};
@@ -43,15 +51,35 @@ public class Screen {
         }
     }
 
-    public void setColor(Color color) {
+    public Color getDefaultColor() {
+        return color;
+    }
+
+    public void setDefaultColor(Color color) {
         this.color = color;
     }
 
-    public Font getFont() {
+    public void setColor(Color color) {
+        this.color = color;
+        graphics.setColor(new java.awt.Color(color.r, color.g, color.b));
+    }
+
+    public Font getDefaultFont() {
         return font;
     }
 
-    public void setFont(Font font) { this.font = font; }
+    public void setDefaultFont(Font font) {
+        this.font = font;
+    }
+
+    public Font getFont() {
+        return graphics.getFont();
+    }
+
+    public void setFont(Font font) {
+        if (!getFont().equals(font))
+            graphics.setFont(font);
+    }
 
     public void drawPoint(int x, int y) {
         if (x > matrix[0] && x < matrix[0] + matrix[2] && y > matrix[1] && y < matrix[1] + matrix[3])
@@ -144,7 +172,7 @@ public class Screen {
     }
 
     public void drawString(int x, int y, String string) {
-        font.render(x, y, string, this);
+        strings.add(new Object[]{string, x, y});
     }
 
     public void render(int xp, int yp, Sprite sprite) {
@@ -182,4 +210,11 @@ public class Screen {
         return height;
     }
 
+    public Collection<Object[]> getStrings() {
+        return strings;
+    }
+
+    public void setGraphics(Graphics graphics) {
+        this.graphics = graphics;
+    }
 }

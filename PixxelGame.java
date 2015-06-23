@@ -64,6 +64,8 @@ public abstract class PixxelGame implements Runnable {
     private void preRender() {
         Screen screen = display.getScreen();
         screen.clear();
+
+        display.preDraw();
     }
 
     public abstract void tick();
@@ -73,6 +75,7 @@ public abstract class PixxelGame implements Runnable {
     private void postRender() {
         display.draw();
     }
+
 
     public synchronized void start() {
         try {

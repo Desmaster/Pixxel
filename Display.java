@@ -65,6 +65,9 @@ public class Display extends Canvas {
 
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+
+
+
         g.setColor(java.awt.Color.black);
 
         g.dispose();

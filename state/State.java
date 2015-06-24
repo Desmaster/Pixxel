@@ -3,6 +3,7 @@ package nl.tdegroot.games.pixxel.state;
 import nl.tdegroot.games.pixxel.Display;
 import nl.tdegroot.games.pixxel.GameException;
 import nl.tdegroot.games.pixxel.PixxelGame;
+import nl.tdegroot.games.pixxel.PixxelStateGame;
 import nl.tdegroot.games.pixxel.gfx.Screen;
 
 public abstract class State {

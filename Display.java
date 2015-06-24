@@ -16,6 +16,9 @@ public class Display extends Canvas {
     private int scale;
     private int[] pixels;
 
+    BufferStrategy bs;
+    Graphics g;
+
     private BufferedImage image;
     private JFrame frame;
     private Screen screen;
@@ -52,23 +55,39 @@ public class Display extends Canvas {
         frame.setVisible(true);
     }
 
-    public void draw() {
-        BufferStrategy bs = getBufferStrategy();
+    public void preDraw() {
         if (bs == null) {
             createBufferStrategy(3);
-            return;
         }
 
+        bs = getBufferStrategy();
+        g = bs.getDrawGraphics();
+
+        screen.setGraphics(g);
+        screen.setColor(screen.getDefaultColor());
+        g.setFont(screen.getDefaultFont());
+    }
+
+    public void draw() {
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
         }
 
-        Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
+        //TODO: Is this the correct way to go?
+        /**
+         * Screen.getStrings(), can only be called once.
+         * Screen.getStrings() contains al strings that need to be renderer.
+         * string[0] = the string to be rendered
+         * string[1] = x coordinate
+         * string[2] = y coordinate
+         */
 
-
-        g.setColor(java.awt.Color.black);
+        for(Object[] string : screen.getStrings()) {
+            g.drawString((String) string[0], (int) string[1] * scale, (int) string[2] * scale);
+        }
+        screen.getStrings().clear();
 
         g.dispose();
         bs.show();

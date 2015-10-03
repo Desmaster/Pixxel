@@ -6,6 +6,7 @@ import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
 import nl.tdegroot.games.pixxel.GameException;
+import nl.tdegroot.games.pixxel.gfx.Color;
 import nl.tdegroot.games.pixxel.gfx.Screen;
 import nl.tdegroot.games.pixxel.util.Log;
 import org.w3c.dom.Element;
@@ -212,19 +213,13 @@ public class Layer {
 //                        set.tiles.startUse();
                     }
 
-                    int tileid = getTileRealID(data[sx + tx][sy + ty][2]);    // TODO add methoud.
-                    int rotation = getTileRotation(data[sx + tx][sy + ty][2]);//
+                    int rotation = getTileRotation(data[sx + tx][sy + ty][2]);
 
-//                    Log.info("Tile Rotation: " + rotation);
-
-
-                    int sheetX = set.getTileX(data[sx + tx][sy + ty][1]); // TODO Tile ID !!!!!!!!!
-                    int sheetY = set.getTileY(data[sx + tx][sy + ty][1]); // TODO Tile ID !!!!!!!!!
+                    int sheetX = set.getTileX(data[sx + tx][sy + ty][1]);
+                    int sheetY = set.getTileY(data[sx + tx][sy + ty][1]);
 
                     int tileOffsetY = set.tileHeight - mapTileHeight;
 
-                    // set.tiles.renderInUse(x+(tx*set.tileWidth),
-                    // y+(ty*set.tileHeight), sheetX, sheetY);
                     set.tiles.render(x + (tx * mapTileWidth), y + (ty * mapTileHeight) - tileOffsetY, sheetX, sheetY, rotation, screen);
                 }
             }

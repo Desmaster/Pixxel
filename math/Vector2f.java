@@ -1,66 +1,62 @@
 package nl.tdegroot.games.pixxel.math;
 
-public class Vector2i {
+public class Vector2f {
 
-    public int x;
-    public int y;
+    public float x;
+    public float y;
     private double angle;
 
-    public Vector2i() {
+    public Vector2f() {
         this(0, 0);
     }
 
-    public Vector2i(double angle) {
-        x = (int) Math.cos(angle * Math.PI / 180);
-        y = (int) Math.sin(angle * Math.PI / 180);
+    public Vector2f(double angle) {
+        x = (float) Math.cos(angle * Math.PI / 180);
+        y = (float) Math.sin(angle * Math.PI / 180);
     }
 
-    public Vector2i(int x, int y) {
+    public Vector2f(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public Vector2i copy() {
-        return new Vector2i(x, y);
-    }
-
-    public Vector2i add(Vector2i other) {
+    public Vector2f add(Vector2f other) {
         x += other.x;
         y += other.y;
         return this;
     }
 
-    public Vector2i subtract(Vector2i other) {
+    public Vector2f subtract(Vector2f other) {
         x -= other.x;
         y -= other.y;
         return this;
     }
 
-    public Vector2i multiply(Vector2i other) {
+    public Vector2f multiply(Vector2f other) {
         x *= other.x;
         y *= other.y;
         return this;
     }
 
-    public Vector2i divide(Vector2i other) {
+    public Vector2f divide(Vector2f other) {
         x /= other.x;
         y /= other.y;
         return this;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 

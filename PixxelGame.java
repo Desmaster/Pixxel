@@ -1,5 +1,6 @@
 package nl.tdegroot.games.pixxel;
 
+import nl.tdegroot.games.pixxel.gfx.Color;
 import nl.tdegroot.games.pixxel.gfx.Screen;
 
 public abstract class PixxelGame implements Runnable {
@@ -8,6 +9,7 @@ public abstract class PixxelGame implements Runnable {
     private int frames;
     private int ticks;
     private int time;
+    private long lastFrame;
 
     private Display display;
     private Thread thread;
@@ -16,6 +18,7 @@ public abstract class PixxelGame implements Runnable {
 
     public PixxelGame(String title, int width, int height, int scale) {
         display = new Display(title, width, height, scale);
+        lastFrame = getRealTime();
         Keyboard.getInstance().register(display);
     }
 
@@ -25,15 +28,14 @@ public abstract class PixxelGame implements Runnable {
         double nsPerTick = 1000000000.0D / 60;
         double unprocessed = 0;
         long lastTime = System.nanoTime(), now;
-        long lastTimer1 = System.currentTimeMillis();
+        long lastTimer1 = getRealTime();
         display.requestFocus();
         while (running) {
             now = System.nanoTime();
-            int delta = (int) (now - lastTime);
             unprocessed += (now - lastTime) / nsPerTick;
             lastTime = now;
 
-            boolean shouldRender = false;
+            boolean shouldRender = true;
 
             while (unprocessed >= 1) {
                 ticks++;
@@ -50,7 +52,7 @@ public abstract class PixxelGame implements Runnable {
                 frames++;
             }
 
-            if (System.currentTimeMillis() - lastTimer1 > 1000) {
+            if (getRealTime() - lastTimer1 > 1000) {
                 lastTimer1 += 1000;
                 if (logFps)
                     System.out.println(ticks + " ticks, " + frames + " fps");
@@ -59,6 +61,14 @@ public abstract class PixxelGame implements Runnable {
             }
 
         }
+    }
+
+    public int getDelta() {
+        long time = getRealTime();
+        int delta = (int) (time - lastFrame);
+        lastFrame = time;
+
+        return delta;
     }
 
     private void preRender() {
@@ -73,6 +83,8 @@ public abstract class PixxelGame implements Runnable {
     public abstract void render(Screen screen);
 
     private void postRender() {
+        display.getScreen().setColor(new Color(0xFFFF00FF));
+        display.getScreen().drawString(0, 0, "" + frames);
         display.draw();
     }
 
@@ -103,6 +115,10 @@ public abstract class PixxelGame implements Runnable {
 
     public void setLogFps(boolean logFps) {
         this.logFps = logFps;
+    }
+
+    public long getRealTime() {
+        return System.currentTimeMillis();
     }
 
     public long getTime() {

@@ -28,6 +28,7 @@ public class TiledMap {
      * Indicates if we're running on a headless system
      */
     private static boolean headless;
+    private int backgroundColor;
 
     /**
      * Indicate if we're running on a headless system where we'd just like to
@@ -592,6 +593,7 @@ public class TiledMap {
             height = parseInt(docElement.getAttribute("height"));
             tileWidth = parseInt(docElement.getAttribute("tilewidth"));
             tileHeight = parseInt(docElement.getAttribute("tileheight"));
+            backgroundColor = 0xFF000000 | (int) Long.parseLong(docElement.getAttribute("backgroundcolor").replace("#", ""), 16);
 
             // now read the map properties
             Element propsElement = (Element) docElement.getElementsByTagName("properties").item(0);
@@ -913,6 +915,7 @@ public class TiledMap {
      * @author kulpae
      */
     protected class ObjectGroup {
+
         /**
          * The index of this group
          */
@@ -933,7 +936,6 @@ public class TiledMap {
          * The height of this layer
          */
         public int height;
-
         /**
          * the properties of this group
          */
@@ -975,14 +977,15 @@ public class TiledMap {
                 objects.add(object);
             }
         }
-    }
 
+    }
     /**
      * An object from a object-group on the map
      *
      * @author kulpae
      */
     protected class GroupObject {
+
         /**
          * The index of this object
          */
@@ -1015,7 +1018,6 @@ public class TiledMap {
          * The image source
          */
         private String image;
-
         /**
          * the properties of this group
          */
@@ -1056,6 +1058,11 @@ public class TiledMap {
                 }
             }
         }
+
+    }
+
+    public int getBackgroundColor() {
+        return backgroundColor;
     }
 
 }

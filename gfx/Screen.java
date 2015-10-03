@@ -17,6 +17,7 @@ public class Screen {
 
     int translateX = 0, translateY = 0;
     int[] matrix;
+    int clearColor = 0xFF000000;
 
     private Graphics graphics;
 
@@ -27,7 +28,7 @@ public class Screen {
         strings = new ArrayList<>();
         pixels = new int[width * height];
 
-        matrix = new int[] {0, 0, width, height};
+        matrix = new int[]{0, 0, width, height};
 
         clear();
     }
@@ -42,7 +43,7 @@ public class Screen {
     }
 
     public void clear() {
-        clear(0xFF000000);
+        clear(clearColor);
     }
 
     public void clear(int col) {
@@ -117,10 +118,10 @@ public class Screen {
     }
 
     public void drawRect(int x, int y, int w, int h) {
-        drawLine(x, y, x+w, y);
-        drawLine(x+w, y, x + w, y + h);
-        drawLine(x, y+h, x+w, y+h);
-        drawLine(x, y, x, y+h);
+        drawLine(x, y, x + w, y);
+        drawLine(x + w, y, x + w, y + h);
+        drawLine(x, y + h, x + w, y + h);
+        drawLine(x, y, x, y + h);
     }
 
     public void fillRect(int x, int y, int w, int h) {
@@ -139,23 +140,19 @@ public class Screen {
         int y = 0;
         int decisionOver2 = 1 - x;
 
-        while(x >= y)
-        {
-            drawPoint( x + x0,  y + y0);
-            drawPoint( y + x0,  x + y0);
-            drawPoint(-x + x0,  y + y0);
-            drawPoint(-y + x0,  x + y0);
+        while (x >= y) {
+            drawPoint(x + x0, y + y0);
+            drawPoint(y + x0, x + y0);
+            drawPoint(-x + x0, y + y0);
+            drawPoint(-y + x0, x + y0);
             drawPoint(-x + x0, -y + y0);
             drawPoint(-y + x0, -x + y0);
-            drawPoint( x + x0, -y + y0);
-            drawPoint( y + x0, -x + y0);
+            drawPoint(x + x0, -y + y0);
+            drawPoint(y + x0, -x + y0);
             y++;
-            if (decisionOver2<=0)
-            {
+            if (decisionOver2 <= 0) {
                 decisionOver2 += 2 * y + 1;   // Change in decision criterion for y -> y+1
-            }
-            else
-            {
+            } else {
                 x--;
                 decisionOver2 += 2 * (y - x) + 1;   // Change for y -> y+1, x -> x-1
             }
@@ -165,7 +162,7 @@ public class Screen {
     public void fillCircle(int x, int y, int r) {
         for (int yy = -r; yy < r; yy++) {
             for (int xx = -r; xx < r; xx++) {
-                if (xx*xx+yy*yy <= (r*2 + r*2) * 0.8f)
+                if (xx * xx + yy * yy <= (r * 2 + r * 2) * 0.8f)
                     drawPoint(x + xx, y + yy);
             }
         }
@@ -216,5 +213,9 @@ public class Screen {
 
     public void setGraphics(Graphics graphics) {
         this.graphics = graphics;
+    }
+
+    public void setClearColor(int clearColor) {
+        this.clearColor = clearColor;
     }
 }
